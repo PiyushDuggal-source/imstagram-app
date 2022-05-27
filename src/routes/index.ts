@@ -10,9 +10,7 @@ const router = Router();
 if (process.env.NODE_ENV === "production") {
   router.use(express.static("personalProjectFE/build"));
   router.get("*", (req: Request, res: Response) => {
-    res.sendFile(
-      path.resolve(__dirname, "personalProjectFE", "build", "index.html")
-    );
+    res.sendFile("../../personalProjectFE/build/index.html");
   });
 }
 
