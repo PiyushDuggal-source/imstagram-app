@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "build": "tsc src/**/*.ts",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix personalProjectFE && npm run build --prefix personalProjectFE"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run build && npm install --prefix personalProjectFE && npm run build --prefix personalProjectFE"
   },
   "author": "Piyush Duggal",
   "license": "ISC",
