@@ -108,7 +108,7 @@ const Navbar = () => {
                     whileHover={{ scale: 1.2 }}
                   >
                     <AiOutlineUser
-                      onClick={() => navigate(`${login[1]}`)}
+                      onClick={() => navigate(`user/${login[1]}`)}
                       size={toggle600 ? 24 : 30}
                     ></AiOutlineUser>
                   </motion.div>

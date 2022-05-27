@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import { Alert, Loader } from "@mantine/core";
 import Container from "@mui/material/Container";
 import { useFormik } from "formik";
-import { IconButton, MenuItem } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { signUpInitialValues } from "../../ValidateSchema&InitialValues/initialValues";
 import { validateSignUpSchema } from "../../ValidateSchema&InitialValues/validateSchemas";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -213,6 +213,10 @@ export default function SignUp() {
                   type={values ? "text" : "password"}
                   sx={{ marginRight: 2 }}
                   value={formik.values.password}
+                  error={
+                    formik.touched.password && Boolean(formik.errors.password)
+                  }
+                  helperText={formik.touched.password && formik.errors.password}
                   onChange={formik.handleChange}
                   label="Password"
                 />
@@ -223,17 +227,29 @@ export default function SignUp() {
                   id="confirmPassword"
                   type={values ? "text" : "password"}
                   value={formik.values.confirmPassword}
+                  error={
+                    formik.touched.confirmPassword ||
+                    Boolean(formik.errors.confirmPassword)
+                  }
+                  helperText={
+                    formik.touched.confirmPassword ||
+                    formik.errors.confirmPassword
+                  }
                   onChange={formik.handleChange}
                   label="confirm Password"
                 />
-                <IconButton
-                  aria-label="toggle password visibility"
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  startIcon={values ? <VisibilityOff /> : <Visibility />}
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
-                  edge="end"
+                  aria-label="toggle password visibility"
+                  style={{ marginLeft: "30%", padding: 10 }}
                 >
-                  {values ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
+                  {" "}
+                  Show Password
+                </Button>
               </Grid>
               <Grid item>
                 <TextField

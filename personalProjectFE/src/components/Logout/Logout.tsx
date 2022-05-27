@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { logoutMe } from "../../services/auth.services";
 
 const Logout = () => {

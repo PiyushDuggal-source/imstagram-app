@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import NotFound from "./components/404/NotFound";
 import Create from "./components/Create/Create";
 import Home from "./components/Home/Home";
 import Logout from "./components/Logout/Logout";
@@ -31,12 +32,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/:userName" element={<Profile />} />
+          <Route path="/user/:userName" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/create" element={<Create />} />
           <Route path="/inbox" element={<NotImple />} />
           <Route path="/edit" element={<NotImple />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </LoginInfo.Provider>
     </>

@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3002",
+    origin: "https://imstagram-app.herokuapp.com",
     methods: "GET,PUT,POST,DELETE,UPDATE,OPTIONS",
   })
 );

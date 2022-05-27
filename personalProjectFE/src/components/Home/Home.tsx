@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllPosts } from "../../services/user.service";
 import { CenteredDiv, MainContainer } from "../../utils";
 import PostCard from "../Card/PostCard";

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Input, Tooltip, Textarea, Loader, Alert } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { Box, MainContainer } from "../../utils";
