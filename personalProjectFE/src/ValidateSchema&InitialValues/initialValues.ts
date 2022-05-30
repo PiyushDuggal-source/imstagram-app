@@ -1,9 +1,3 @@
-enum Gender {
-  Male = "Male",
-  Female = "Female",
-  Others = "Others",
-}
-
 export interface User {
   firstName: string;
   lastName: string;

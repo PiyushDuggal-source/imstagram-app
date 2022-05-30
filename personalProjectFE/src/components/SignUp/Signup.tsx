@@ -135,8 +135,8 @@ export default function SignUp() {
             onSubmit={formik.handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+            <Grid sx={{ justifyContent: "center" }} container spacing={2}>
+              <Grid item xs={toggle600 ? 11 : 12}>
                 <TextField
                   autoComplete="given-name"
                   autoFocus
@@ -153,7 +153,7 @@ export default function SignUp() {
                   helperText={formik.touched.userName && formik.errors.userName}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={toggle600 ? 11 : 12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -171,7 +171,7 @@ export default function SignUp() {
                   }
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={toggle600 ? 11 : 12} sm={6}>
                 <TextField
                   fullWidth
                   id="lastName"
@@ -186,7 +186,7 @@ export default function SignUp() {
                   helperText={formik.touched.lastName && formik.errors.lastName}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={toggle600 ? 11 : 12}>
                 <TextField
                   required
                   fullWidth
@@ -202,7 +202,7 @@ export default function SignUp() {
               </Grid>
               <Grid
                 item
-                xs={12}
+                xs={toggle600 ? 11 : 12}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <TextField
@@ -239,22 +239,19 @@ export default function SignUp() {
                   label="confirm Password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Button
-                  startIcon={values ? <VisibilityOff /> : <Visibility />}
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  aria-label="toggle password visibility"
-                  style={{ marginLeft: "30%", padding: 10 }}
-                >
-                  {" "}
-                  Show Password
-                </Button>
-              </Grid>
-              <Grid item>
+              <Button
+                startIcon={values ? <VisibilityOff /> : <Visibility />}
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                aria-label="toggle password visibility"
+                style={{ marginTop: 10 }}
+              >
+                {" "}
+                Show Password
+              </Button>
+              <Grid item xs={toggle600 ? 11 : 12}>
                 <TextField
                   required
-                  sx={{ margin: 1, width: toggle600 ? 370 : 400 }}
                   select
                   label="Gender"
                   fullWidth
@@ -275,7 +272,7 @@ export default function SignUp() {
             </Grid>
             <Button
               type="submit"
-              fullWidth
+              style={toggle600 ? { width: "92%" } : { width: "100%" }}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
