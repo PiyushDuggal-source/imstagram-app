@@ -2,6 +2,8 @@ import styled from "styled-components";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Img, MainContainer } from "../../utils";
 import useMatchMedia from "../../hooks/useMatchMedia";
+import Modal from "react-modal";
+import { useState } from "react";
 type ProfilePostData = {
   data: {
     img: string;
@@ -12,9 +14,16 @@ type ProfilePostData = {
 
 const ProfilePosts = (prop: ProfilePostData) => {
   const toggle600 = useMatchMedia();
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <MainContainer style={{ margin: "10px" }}>
-      <ProfilePostCard>
+      <ProfilePostCard onClick={() => openModal()}>
         <Img
           style={
             toggle600
@@ -34,6 +43,21 @@ const ProfilePosts = (prop: ProfilePostData) => {
           {prop.data.likes}
         </Likes>
       </ProfilePostCard>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+      >
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </Modal>
     </MainContainer>
   );
 };

@@ -11,6 +11,8 @@ export interface User extends Document {
   firstName: string;
   lastName: string;
   email: string;
+  followers: string[];
+  followings: string[];
   userName: string;
   password: string;
   gender: "Male" | "Female" | "Others";
@@ -25,6 +27,8 @@ const userModel = new Schema<User>({
   password: { type: String, require: true },
   gender: { type: String, require: true },
   imageUrl: { type: String },
+  followers: [{ type: String }],
+  followings: [{ type: String }],
 });
 
 userModel.pre("save", function (next) {

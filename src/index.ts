@@ -9,7 +9,8 @@ import { connectToDb } from "./utils/connect";
 import router from "./routes";
 import { Response, Request } from "express";
 const app = express();
-const LOCAL = false;
+
+const LOCAL = true;
 
 connectToDb(
   LOCAL

@@ -42,3 +42,5 @@ export const Heading = styled.div`
 `;
 
 export const Anchor = styled.a``;
+
+export const Btn = styled.button``;

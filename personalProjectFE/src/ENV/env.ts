@@ -1,4 +1,4 @@
-export const Local = false;
+export const Local = true;
 
 export const CREATE_NEW_USER = "https://imstagram-app.herokuapp.com/api/signup";
 export const LOGIN_INFO = "https://imstagram-app.herokuapp.com/api/me";

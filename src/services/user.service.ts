@@ -18,7 +18,9 @@ export const createNewPost = (body: Post) => {
 };
 
 export const getAllPost = async () => {
-  return await PostModel.find({}, ["-__v"]).sort({ _id: -1 });
+  return await PostModel.find({}, ["-__v", "-likedBy"]).sort({
+    _id: -1,
+  });
 };
 
 export const isPostLiked = async (postId: string, userName: string) => {

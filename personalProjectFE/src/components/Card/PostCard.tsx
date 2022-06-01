@@ -8,7 +8,6 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import { Avatar, Group, Tooltip, UnstyledButton } from "@mantine/core";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
 import { Box } from "../../utils";
 import { isLiked } from "../../services/user.service";
@@ -76,11 +75,6 @@ export default function PostCard(prop: PostData) {
             </Group>
           </UnstyledButton>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
       />
       <CardMedia
         component="img"
@@ -125,4 +119,10 @@ const PostTitle = styled(Box)`
 const PostBody = styled(Box)`
   word-wrap: break-word;
   color: rgba(255, 255, 255, 0.7);
+`;
+
+const FollowBtn = styled(Box)`
+  margin: 14px 10px 0 0;
+  color: #a5d8ff;
+  cursor: pointer;
 `;
