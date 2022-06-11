@@ -10,3 +10,4 @@ export const IS_LIKED = "https://imstagram-app.herokuapp.com/api/isLiked/";
 export const IS_USER = "https://imstagram-app.herokuapp.com/api/isUser/";
 export const GET_USER_DATA =
   "https://imstagram-app.herokuapp.com/api/UserInfo/";
+export const LOCALHOST = "http://localhost:4000/api";

@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import { BiErrorAlt } from "react-icons/bi";
 import { Alert, Loader } from "@mantine/core";
 // import Spline from "@splinetool/react-spline";
-
+import useSWR from "swr";
+import axios from "axios";
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
@@ -50,7 +51,7 @@ const Home = () => {
         transition={{ type: "spring" }}
         animate={{ scale: 1 }}
       >
-        {posts.map((ele, key) => {
+        {(posts || []).map((ele, key) => {
           return <PostCard key={key} data={ele} />;
         })}
       </motion.div>

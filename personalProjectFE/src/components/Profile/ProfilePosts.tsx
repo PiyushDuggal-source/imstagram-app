@@ -4,6 +4,7 @@ import { Box, Img, MainContainer } from "../../utils";
 import useMatchMedia from "../../hooks/useMatchMedia";
 import Modal from "react-modal";
 import { useState } from "react";
+import { motion } from "framer-motion";
 type ProfilePostData = {
   data: {
     img: string;
@@ -21,6 +22,7 @@ const ProfilePosts = (prop: ProfilePostData) => {
   function closeModal() {
     setIsOpen(false);
   }
+
   return (
     <MainContainer style={{ margin: "10px" }}>
       <ProfilePostCard onClick={() => openModal()}>
@@ -46,17 +48,47 @@ const ProfilePosts = (prop: ProfilePostData) => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Example Modal"
+        shouldCloseOnOverlayClick
+        ariaHideApp={false}
+        style={{
+          overlay: {
+            backgroundColor: "#7d77776a",
+          },
+
+          content: {
+            top: "30%",
+            left: "40%",
+            right: "auto",
+            backgroundColor: "#2e2323",
+            bottom: "auto",
+            marginRight: "-50%",
+          },
+        }}
       >
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <motion.div
+          initial={{ scale: 0.7 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.45 }}
+        >
+          <Img
+            style={
+              toggle600
+                ? {
+                    margin: "-60px -20px",
+                  }
+                : {
+                    margin: "-40px -20px",
+                  }
+            }
+            width="280px"
+            src={prop.data.img}
+          />
+          <Title>{prop.data.title}</Title>
+          <Likes>
+            <FavoriteIcon style={{ marginRight: "5px" }} />
+            {prop.data.likes}
+          </Likes>
+        </motion.div>
       </Modal>
     </MainContainer>
   );
