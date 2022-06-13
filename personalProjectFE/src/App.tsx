@@ -29,7 +29,10 @@ function App() {
   return (
     <>
       <SWRConfig
-        value={{ fetcher: (url: string) => axios(url).then((r) => r.data) }}
+        value={{
+          dedupingInterval: 5000,
+          fetcher: (url: string) => axios(url).then((r) => r.data),
+        }}
       >
         <LoginInfo.Provider value={[login, userName]}>
           <Navbar />

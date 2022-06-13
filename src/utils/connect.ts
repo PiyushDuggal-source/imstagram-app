@@ -1,7 +1,6 @@
 import { connect } from "mongoose";
 
 // const { logExecutionTime } = require("mongoose-execution-time");
-
 // plugin(logExecutionTime);
 export const connectToDb = async (dbURL: string) => {
   try {

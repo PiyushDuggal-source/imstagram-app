@@ -9,10 +9,12 @@ import IconButton from "@mui/material/IconButton";
 import { Avatar, Group, Tooltip, UnstyledButton } from "@mantine/core";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
+import { RiUserFollowFill, RiUserFollowLine } from "react-icons/ri";
 import { Box } from "../../utils";
 import { isLiked } from "../../services/user.service";
 
 import { LoginInfo } from "../../App";
+import { isFollow } from "../../services/post.service";
 export type PostData = {
   data: {
     _id: string;
@@ -28,6 +30,7 @@ export default function PostCard(prop: PostData) {
   const [alreadyLiked, setAlreadyLiked] = React.useState<boolean>(false);
   const [notloggedIn, setNotLoggedIn] = React.useState(false);
   const [toolTopMsg, setToolTipMsg] = React.useState("Already Liked!");
+  const [follow, setFollow] = React.useState<boolean>(false);
   const navigate = useNavigate();
   const login = React.useContext(LoginInfo);
 
@@ -58,6 +61,19 @@ export default function PostCard(prop: PostData) {
     }, 2000);
     setToolTipMsg("Login To like this Post");
   };
+
+  const isFollowed = async (userName: string) => {
+    const { data } = await isFollow(userName);
+    if (!login[0]) {
+      setFollow(false);
+      return;
+    }
+    console.log(data);
+    if (!data.followed) {
+      setFollow(true);
+    }
+  };
+
   return (
     <Card sx={{ width: 300, maxWidth: 345, minWidth: 280, margin: "2px 0" }}>
       <CardHeader
@@ -74,6 +90,25 @@ export default function PostCard(prop: PostData) {
               </div>
             </Group>
           </UnstyledButton>
+        }
+        action={
+          !(login[1] === prop.data.userName) ? (
+            <>
+              <FollowBtn onClick={() => isFollowed(prop.data.userName)}>
+                {follow ? (
+                  <Tooltip label="Followed">
+                    <RiUserFollowFill size={20} />
+                  </Tooltip>
+                ) : (
+                  <Tooltip label="Follow">
+                    <RiUserFollowLine size={20} />
+                  </Tooltip>
+                )}
+              </FollowBtn>
+            </>
+          ) : (
+            <></>
+          )
         }
       />
       <CardMedia

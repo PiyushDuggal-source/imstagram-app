@@ -23,7 +23,10 @@ export const getAllPost = async () => {
   });
 };
 
-export const isPostLiked = async (postId: string, userName: string) => {
+export const isPostLiked = async (
+  postId: string,
+  userName: string
+): Promise<boolean> => {
   const post = await PostModel.find({ _id: postId });
   if (post[0].likedBy.includes(userName)) {
     return true;

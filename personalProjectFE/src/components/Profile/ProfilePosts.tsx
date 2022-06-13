@@ -55,18 +55,28 @@ const ProfilePosts = (prop: ProfilePostData) => {
             backgroundColor: "#7d77776a",
           },
 
-          content: {
-            top: "30%",
-            left: "40%",
-            right: "auto",
-            backgroundColor: "#2e2323",
-            bottom: "auto",
-            marginRight: "-50%",
-          },
+          content: !toggle600
+            ? {
+                top: "30%",
+                left: "40%",
+                inset: "30% auto auto 41%",
+                right: "auto",
+                backgroundColor: "#2e2323",
+                bottom: "auto",
+                marginRight: "-50%",
+              }
+            : {
+                inset: "30% auto auto 12%",
+                top: "30%",
+                right: "auto",
+                backgroundColor: "#2e2323",
+                bottom: "auto",
+                marginRight: "-50%",
+              },
         }}
       >
         <motion.div
-          initial={{ scale: 0.7 }}
+          initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.45 }}
         >

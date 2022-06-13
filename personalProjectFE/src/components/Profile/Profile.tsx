@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid, Hr, MainContainer } from "../../utils";
 import { useParams } from "react-router-dom";
-import { getUserData, isUser } from "../../services/user.service";
+import { isUser } from "../../services/user.service";
 import ProfileCard from "./ProfileCard";
 import { useContext } from "react";
 import { LoginInfo } from "../../App";
@@ -52,15 +52,16 @@ const Profile = () => {
   const { data: userData, error: profileError } = useSWR(
     `${LOCALHOST}/UserInfo/${userName}`
   );
-  console.log(userData);
-  console.log(profileError);
   useEffect(() => {
     (async () => {
       // const userData = await getUserData(userName as string);
 
       const likePoint = userData?.likePoints;
       // const likePoint = userData.data.likePoints;
-      console.log(likePoint);
+      if (profileError) {
+        setShow(false);
+        return;
+      }
       setUser({
         ...userData?.userData,
         // ...userData.data.userData,
@@ -71,7 +72,7 @@ const Profile = () => {
       // setUserPosts(userData.data.posts);
       setLoading(false);
     })();
-  }, [userName, loggedInUser, userData]);
+  }, [userName, loggedInUser, userData, profileError]);
   // }, [userName, loggedInUser]);
 
   useEffect(() => {
@@ -79,13 +80,12 @@ const Profile = () => {
       const isuser = await isUser(userName as string);
       const { data } = isuser;
 
-      console.log(data);
       if (!data.exists) {
         setShow(false);
         return;
       }
     })();
-  }, [show, userName]);
+  }, [userName]);
   return show ? (
     loading ? (
       <>
