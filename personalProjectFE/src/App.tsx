@@ -10,6 +10,8 @@ import Profile from "./components/Profile/Profile";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/Signup";
 import { loggedInInfo } from "./services/auth.services";
+import { SWRConfig } from "swr";
+import axios from "axios";
 
 export const LoginInfo = createContext<(boolean | string)[]>([]);
 
@@ -26,21 +28,25 @@ function App() {
   }, []);
   return (
     <>
-      <LoginInfo.Provider value={[login, userName]}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/user/:userName" element={<Profile />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/login" element={<SignIn />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/inbox" element={<NotImple />} />
-          <Route path="/edit" element={<NotImple />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
-      </LoginInfo.Provider>
+      <SWRConfig
+        value={{ fetcher: (url: string) => axios(url).then((r) => r.data) }}
+      >
+        <LoginInfo.Provider value={[login, userName]}>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/user/:userName" element={<Profile />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/inbox" element={<NotImple />} />
+            <Route path="/edit" element={<NotImple />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+        </LoginInfo.Provider>
+      </SWRConfig>
     </>
   );
 }

@@ -8,6 +8,8 @@ import { LoginInfo } from "../../App";
 import ProfilePosts from "./ProfilePosts";
 import { Loader } from "@mantine/core";
 import { motion } from "framer-motion";
+import useSWR from "swr";
+import { LOCALHOST } from "../../ENV/env";
 
 type PostData = {
   firstName: string;
@@ -47,28 +49,43 @@ const Profile = () => {
   const [, loggedInUser] = useContext(LoginInfo);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const { data: userData, error: profileError } = useSWR(
+    `${LOCALHOST}/UserInfo/${userName}`
+  );
+  console.log(userData);
+  console.log(profileError);
   useEffect(() => {
     (async () => {
-      const userData = await getUserData(userName as string);
+      // const userData = await getUserData(userName as string);
 
-      const likePoint = userData.data.likePoints;
+      const likePoint = userData?.likePoints;
+      // const likePoint = userData.data.likePoints;
+      console.log(likePoint);
+      setUser({
+        ...userData?.userData,
+        // ...userData.data.userData,
+        likes: likePoint,
+        showEdit: (loggedInUser as string) === (userName as string),
+      });
+      setUserPosts(userData?.posts);
+      // setUserPosts(userData.data.posts);
+      setLoading(false);
+    })();
+  }, [userName, loggedInUser, userData]);
+  // }, [userName, loggedInUser]);
 
+  useEffect(() => {
+    (async () => {
       const isuser = await isUser(userName as string);
       const { data } = isuser;
+
       console.log(data);
       if (!data.exists) {
         setShow(false);
         return;
       }
-      setUser({
-        ...userData.data.userData,
-        likes: likePoint,
-        showEdit: (loggedInUser as string) === (userName as string),
-      });
-      setUserPosts(userData.data.posts);
-      setLoading(false);
     })();
-  }, [userName, loggedInUser]);
+  }, [show, userName]);
   return show ? (
     loading ? (
       <>
@@ -88,7 +105,7 @@ const Profile = () => {
             transition={{ duration: 0.45 }}
           >
             <Grid gap="1rem">
-              {userPosts.map((userPost: UserPostData, index: number) => (
+              {userPosts?.map((userPost: UserPostData, index: number) => (
                 <ProfilePosts data={userPost} key={index} />
               ))}
             </Grid>

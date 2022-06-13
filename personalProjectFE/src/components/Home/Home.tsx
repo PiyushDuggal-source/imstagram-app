@@ -1,25 +1,36 @@
 import { useEffect, useState } from "react";
-import { getAllPosts } from "../../services/user.service";
 import { CenteredDiv, MainContainer } from "../../utils";
 import PostCard from "../Card/PostCard";
 import { motion } from "framer-motion";
 import { BiErrorAlt } from "react-icons/bi";
 import { Alert, Loader } from "@mantine/core";
-// import Spline from "@splinetool/react-spline";
 import useSWR from "swr";
-import axios from "axios";
+import { LOCALHOST } from "../../ENV/env";
+
+type SinglePostData = {
+  _id: string;
+  userName: string;
+  title: string;
+  img: string;
+  body: string;
+  likes: number;
+};
+
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<SinglePostData[] | undefined | []>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
+  const { data, error: postError } = useSWR<{ post: SinglePostData[] }>(
+    `${LOCALHOST}/getPosts`
+  );
   useEffect(() => {
     try {
       const getPost = async () => {
-        const post = await getAllPosts();
-        if (post.data.error) {
+        // const post = await getAllPosts();
+        if (postError) {
           setError("Unable to fetch the POSTS");
         } else {
-          setPosts(post.data.post);
+          setPosts(data?.post);
         }
         setLoading(false);
       };
@@ -27,7 +38,7 @@ const Home = () => {
     } catch (err: any) {
       setError("Unable to fetch the POSTS");
     }
-  }, []);
+  }, [data, postError]);
 
   return loading ? (
     <CenteredDiv>
@@ -51,11 +62,10 @@ const Home = () => {
         transition={{ type: "spring" }}
         animate={{ scale: 1 }}
       >
-        {(posts || []).map((ele, key) => {
+        {posts?.map((ele, key) => {
           return <PostCard key={key} data={ele} />;
         })}
       </motion.div>
-      {/* <Spline scene="https://prod.spline.design/IrwsdsLYHRuhUWuo/scene.splin" /> */}
     </MainContainer>
   );
 };
