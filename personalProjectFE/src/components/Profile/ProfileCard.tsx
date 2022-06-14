@@ -17,6 +17,8 @@ export type ProfileProp = {
     gender: string;
     imageUrl: string;
     likes: number;
+    followers: string[];
+    followings: string[];
   };
 };
 
@@ -46,7 +48,7 @@ const ProfileCard = (prop: ProfileProp) => {
         </Top>
         <Middle>
           <Likes>
-            <GiGlassHeart color="red" size={25} />
+            <GiGlassHeart color="red" size={25} style={{ marginRight: 5 }} />
             {prop.data.likes}
             <Tooltip
               style={{ margin: "0 0 0 10px" }}
@@ -59,6 +61,16 @@ const ProfileCard = (prop: ProfileProp) => {
               />
             </Tooltip>
           </Likes>
+          <Follow>
+            <Followings>
+              Followings:{" "}
+              {prop.data.followings?.length ? prop.data.followings.length : 0}
+            </Followings>
+            <Followers>
+              Followers:{" "}
+              {prop.data.followers?.length ? prop.data.followers.length : 0}
+            </Followers>
+          </Follow>
         </Middle>
         {prop.data.showEdit ? (
           <Button
@@ -91,8 +103,15 @@ const Name = styled(Box)`
   font-size: 22px;
 `;
 const Middle = styled(Box)``;
-
+const Follow = styled(Box)`
+  display: flex;
+`;
+const Followings = styled(Box)``;
+const Followers = styled(Box)``;
 const Likes = styled(Box)`
+  display: flex;
+  align-items: baseline;
+  margin-top: 5px;
   color: #fff;
   font-size: 20px;
 `;

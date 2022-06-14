@@ -19,6 +19,8 @@ type PostData = {
   gender: string;
   imageUrl: string;
   likes: number;
+  followers: string[];
+  followings: string[];
 };
 
 type UserPostData = {
@@ -38,6 +40,8 @@ const Profile = () => {
     lastName: "",
     likes: 0,
     userName: "",
+    followers: [""],
+    followings: [""],
   });
   const [userPosts, setUserPosts] = useState<UserPostData[]>([
     {

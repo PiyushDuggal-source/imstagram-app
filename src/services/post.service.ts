@@ -3,7 +3,7 @@ import { UserModel } from "../models/user.model";
 export const checkFollow = async (
   followUserName: string,
   currentUserName: string | undefined
-): Promise<boolean> => {
+) => {
   const user = await UserModel.findOne({ userName: followUserName });
   if (user?.followers.includes(String(currentUserName))) {
     return true;
@@ -24,5 +24,12 @@ export const follow = async (
       },
     }
   );
-  return true;
+  await UserModel.updateOne(
+    { userName: currentUserName },
+    {
+      $push: {
+        followings: [`${followUserName}`],
+      },
+    }
+  );
 };
