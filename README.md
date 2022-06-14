@@ -13,3 +13,5 @@ This project is inspired by Instagram
 - Create **POSTS**
 - **_LIKE_** your Friends POSTS
 - Increase your **_LIKE POINTS_**
+
+## CHECK IT OUT : [Imstagram-app](https://imstagram-app.herokuapp.com)
