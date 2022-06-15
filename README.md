@@ -4,7 +4,7 @@ This project is inspired by Instagram
 
 ## `COOL` things are
 
-- **ANIMATIONS** in almost EVERYTHINGS!! 💯
+- **ANIMATIONS** in almost EVERYTHING!! 💯
 - Random **AVATARS** generated with your **POSTS**!!
 
 ## What you can DO?
