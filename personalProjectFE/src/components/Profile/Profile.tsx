@@ -9,7 +9,7 @@ import ProfilePosts from "./ProfilePosts";
 import { Loader } from "@mantine/core";
 import { motion } from "framer-motion";
 import useSWR from "swr";
-import { LOCALHOST } from "../../ENV/env";
+import { GET_USER_DATA, Local, LOCALHOST } from "../../ENV/env";
 
 type PostData = {
   firstName: string;
@@ -54,7 +54,9 @@ const Profile = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const { data: userData, error: profileError } = useSWR(
-    `${LOCALHOST}/UserInfo/${userName}`
+    Local
+      ? `http://localhost:4000/api/UserInfo/${userName}`
+      : `${GET_USER_DATA}${userName}`
   );
   useEffect(() => {
     (async () => {

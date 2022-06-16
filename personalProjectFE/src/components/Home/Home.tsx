@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { BiErrorAlt } from "react-icons/bi";
 import { Alert, Loader } from "@mantine/core";
 import useSWR from "swr";
-import { LOCALHOST } from "../../ENV/env";
+import { GET_ALL_POSTS, Local, LOCALHOST } from "../../ENV/env";
 
 type SinglePostData = {
   _id: string;
@@ -21,7 +21,7 @@ const Home = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const { data, error: postError } = useSWR<{ post: SinglePostData[] }>(
-    `${LOCALHOST}/getPosts`
+    Local ? "http://localhost:4000/api/getPosts" : GET_ALL_POSTS
   );
   useEffect(() => {
     try {
