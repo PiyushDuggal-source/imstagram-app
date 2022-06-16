@@ -1,5 +1,5 @@
 export const Local = false;
-export const APP_NAME = "https://imstagram-app.heroku.com";
+export const APP_NAME = "https://imstagram-app.herokuapp.com";
 export const CREATE_NEW_USER = `${APP_NAME}/api/signup`;
 export const LOGIN_INFO = `${APP_NAME}/api/me`;
 export const LOGIN = `${APP_NAME}/api/login`;
