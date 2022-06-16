@@ -25,6 +25,7 @@ import { motion } from "framer-motion";
 import useMatchMedia from "../../hooks/useMatchMedia";
 import { MainContainer } from "../../utils";
 import styled from "styled-components";
+import { APP_NAME } from "../../ENV/env";
 
 function Copyright(props: any) {
   return (
@@ -35,8 +36,8 @@ function Copyright(props: any) {
       {...props}
     >
       {"Copyright © "}
-      <Link className="link" color="inherit" to="https://mui.com/">
-        Your Website
+      <Link className="link" color="inherit" to={APP_NAME}>
+        Imstagram-app
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -62,11 +63,9 @@ export default function SignUp() {
     onSubmit: (values) => {
       createNewUser(omit(values, ["confirmPassword"])).then((response) => {
         const { created, error } = response.data;
-        console.log(response);
         if (error) {
           setError(error);
         }
-        console.log(created);
         if (created) {
           navigate("/");
         }
@@ -74,9 +73,9 @@ export default function SignUp() {
     },
   });
 
-  const [values, setValues] = useState(false);
+  const [hide, setValues] = useState(false);
   const handleClickShowPassword = () => {
-    setValues(!values);
+    setValues(!hide);
   };
 
   const handleMouseDownPassword = (
@@ -210,7 +209,7 @@ export default function SignUp() {
                   required
                   name="password"
                   id="password"
-                  type={values ? "text" : "password"}
+                  type={hide ? "text" : "password"}
                   sx={{ marginRight: 2 }}
                   value={formik.values.password}
                   error={
@@ -225,7 +224,7 @@ export default function SignUp() {
                   required
                   name="confirmPassword"
                   id="confirmPassword"
-                  type={values ? "text" : "password"}
+                  type={hide ? "text" : "password"}
                   value={formik.values.confirmPassword}
                   error={
                     formik.touched.confirmPassword ||
@@ -240,14 +239,14 @@ export default function SignUp() {
                 />
               </Grid>
               <Button
-                startIcon={values ? <VisibilityOff /> : <Visibility />}
+                startIcon={hide ? <VisibilityOff /> : <Visibility />}
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 aria-label="toggle password visibility"
-                style={{ marginTop: 10 }}
+                style={{ marginTop: 12 }}
               >
                 {" "}
-                Show Password
+                {!hide ? "Show Password" : "Hide Password"}
               </Button>
               <Grid item xs={toggle600 ? 11 : 12}>
                 <TextField

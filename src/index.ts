@@ -10,7 +10,7 @@ import router from "./routes";
 import { Response, Request } from "express";
 const app = express();
 
-const LOCAL = true;
+const LOCAL = false;
 
 connectToDb(
   LOCAL

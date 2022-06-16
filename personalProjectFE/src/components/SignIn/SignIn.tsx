@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import { LoginInfo } from "../../App";
 import { MainContainer } from "../../utils";
 import styled from "styled-components";
+import { APP_NAME } from "../../ENV/env";
 
 function Copyright(props: any) {
   return (
@@ -31,8 +32,8 @@ function Copyright(props: any) {
       {...props}
     >
       {"Copyright © "}
-      <Link className="link" color="inherit" to="https://mui.com/">
-        Your Website
+      <Link className="link" color="inherit" to={APP_NAME}>
+        Imstagram-app
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

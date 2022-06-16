@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { PostModel } from "../models/post.model";
 import { checkFollow, follow } from "../services/post.service";
 
 export const isFollow = async (req: Request, res: Response) => {

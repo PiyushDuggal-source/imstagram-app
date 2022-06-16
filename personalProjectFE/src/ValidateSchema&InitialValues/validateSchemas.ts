@@ -19,6 +19,9 @@ export const validateSignUpSchema = yup.object().shape({
   password: yup
     .string()
     .required("This is for your security. what are you doing??"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Not Matching!!"),
   gender: yup
     .string()
     .oneOf(["Male", "Female", "Others"])

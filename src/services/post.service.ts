@@ -1,5 +1,14 @@
 import { UserModel } from "../models/user.model";
 
+/*
+returns 
+*/
+/**
+ *
+ * @param followUserName
+ * @param currentUserName
+ * @returns true if `currentUserName` is a follower of `followUserName`
+ */
 export const checkFollow = async (
   followUserName: string,
   currentUserName: string | undefined
