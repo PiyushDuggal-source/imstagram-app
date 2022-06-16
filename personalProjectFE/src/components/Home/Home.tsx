@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { BiErrorAlt } from "react-icons/bi";
 import { Alert, Loader } from "@mantine/core";
 import useSWR from "swr";
-import { GET_ALL_POSTS, Local, LOCALHOST } from "../../ENV/env";
+import { GET_ALL_POSTS, Local } from "../../ENV/env";
 
 type SinglePostData = {
   _id: string;

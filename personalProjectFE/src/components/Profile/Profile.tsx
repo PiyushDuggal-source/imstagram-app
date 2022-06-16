@@ -9,7 +9,7 @@ import ProfilePosts from "./ProfilePosts";
 import { Loader } from "@mantine/core";
 import { motion } from "framer-motion";
 import useSWR from "swr";
-import { GET_USER_DATA, Local, LOCALHOST } from "../../ENV/env";
+import { GET_USER_DATA, Local } from "../../ENV/env";
 
 type PostData = {
   firstName: string;
