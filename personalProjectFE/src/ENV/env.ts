@@ -9,6 +9,6 @@ export const GET_ALL_POSTS = `${APP_NAME}/api/getPosts`;
 export const IS_LIKED = `${APP_NAME}/api/isLiked/`;
 export const IS_USER = `${APP_NAME}/api/isUser/`;
 export const GET_USER_DATA = `${APP_NAME}/api/UserInfo/`;
-export const IS_FOLLOWED = `${APP_NAME}/api/isFollow/`;
+export const IS_FOLLOWED = `${APP_NAME}/api/isFollowed/`;
 export const CHECK_FOLLOW = `${APP_NAME}/api/checkFollow/`;
 export const LOCALHOST = "http://localhost:4000/api";
