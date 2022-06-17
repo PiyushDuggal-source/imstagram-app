@@ -61,7 +61,7 @@ const ProfileCard = (prop: ProfileProp) => {
   const followUser = (userName: string) => {
     setLoading(true);
     isFollow(userName).then(async (res) => {
-      if (!res.data.auth) {
+      if (res.data.auth == false) {
         setFollowLabel("Please Login to Follow this User");
         await sleep(4000);
         setFollowLabel(true);
