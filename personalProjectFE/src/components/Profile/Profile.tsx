@@ -58,6 +58,7 @@ const Profile = () => {
       ? `http://localhost:4000/api/UserInfo/${userName}`
       : `${GET_USER_DATA}${userName}`
   );
+  console.log(userData);
   useEffect(() => {
     (async () => {
       // const userData = await getUserData(userName as string);
@@ -68,6 +69,9 @@ const Profile = () => {
         setShow(false);
         return;
       }
+      if (userData !== undefined) {
+        setLoading(false);
+      }
       setUser({
         ...userData?.userData,
         // ...userData.data.userData,
@@ -76,7 +80,6 @@ const Profile = () => {
       });
       setUserPosts(userData?.posts);
       // setUserPosts(userData.data.posts);
-      setLoading(false);
     })();
   }, [userName, loggedInUser, userData, profileError]);
   // }, [userName, loggedInUser]);
